@@ -1,11 +1,10 @@
 .card {
   background: white;
-  width: 250px;
-  height: 350px;
+  width: 230px;
+  height: 330px;
   border-radius: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   position: relative;
-  top: 4em;
   & > .header {
     padding: 10px 20px;
     & > .number {

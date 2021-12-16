@@ -1,5 +1,6 @@
 @import './tailwind.css';
 @import '../commons/common';
+@import '../CardCounter/cardCounter';
 
 body {
   font-family: 'Courier Prime';
@@ -8,4 +9,11 @@ body {
 .board {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%), #0a863e;
   height: 100vh;
+  position: absolute;
+  width: 100vw;
+  & > .card-box {
+    display: flex;
+    padding-top: 4em;
+    justify-content: space-evenly;
+  }
 }
