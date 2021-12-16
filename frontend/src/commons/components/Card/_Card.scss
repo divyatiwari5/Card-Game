@@ -1,0 +1,25 @@
+.card {
+  background: white;
+  width: 250px;
+  height: 350px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  position: relative;
+  top: 4em;
+  & > .header {
+    padding: 10px 20px;
+    & > .number {
+      font-weight: 700;
+      font-size: 3.5rem;
+    }
+    & > .sm-icon {
+      height: 30px;
+    }
+  }
+
+  & > .lg-icon {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+  }
+}
