@@ -1,9 +1,9 @@
 function Button(props: any) {
   const getClassName = () => {
     let className = 'button';
-    if (props.class == 'center') {
+    if (props.align == 'center') {
       className += ' center';
-    } else if (props.class == 'right') {
+    } else if (props.align == 'right') {
       className += ' right';
     }
     return className;

@@ -4,6 +4,7 @@ import styles from './App.module.scss';
 import { Card } from 'commons/components/Card/Card';
 import { Button } from 'commons/components/Button/Button';
 import CardCounter from 'CardCounter/CardCounter';
+import DealButton from 'DealButton/DealButton';
 
 const App: React.FC = () => {
   return (
@@ -16,8 +17,9 @@ const App: React.FC = () => {
         <Card />
         <Card />
       </div>
-      <Button btnText={'Play Again'} class={'center'} />
-      <Button btnText={'Reset'} class={'right'} />
+      <DealButton />
+      <Button btnText={'Play Again'} align={'center'} />
+      <Button btnText={'Reset'} align={'right'} />
     </div>
   );
 };

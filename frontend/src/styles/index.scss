@@ -1,6 +1,8 @@
 @import './tailwind.css';
+@import './variables';
 @import '../commons/common';
 @import '../CardCounter/cardCounter';
+@import '../DealButton/dealButton';
 
 body {
   font-family: 'Courier Prime';
