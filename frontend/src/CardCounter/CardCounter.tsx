@@ -1,7 +1,7 @@
-function CardCounter() {
+function CardCounter(props: any) {
   return (
     <div className="counter-box">
-      <p className="counter">47</p>
+      <p className="counter">{props.counter}</p>
       <p className="text">Cards Left</p>
     </div>
   );

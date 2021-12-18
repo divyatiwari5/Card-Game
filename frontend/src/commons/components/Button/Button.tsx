@@ -9,7 +9,11 @@ function Button(props: any) {
     return className;
   };
 
-  return <button className={getClassName()}>{props.btnText}</button>;
+  return (
+    <button className={getClassName()} onClick={props.click}>
+      {props.btnText}
+    </button>
+  );
 }
 
 export { Button };

@@ -1,5 +1,9 @@
-function DealButton() {
-  return <button className="deal-btn">Deal</button>;
+function DealButton(props: any) {
+  return (
+    <button className="deal-btn" onClick={props.deal}>
+      Deal
+    </button>
+  );
 }
 
 export default DealButton;
