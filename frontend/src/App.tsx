@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import styles from './App.module.scss';
+import winner from './assets/winner.svg';
 import { Card } from 'commons/components/Card/Card';
 import { Button } from 'commons/components/Button/Button';
 import CardCounter from 'CardCounter/CardCounter';
@@ -11,13 +11,22 @@ function App() {
   const dispatch = useDispatch();
   const deckCards = useSelector((state: any) => state.cards);
   const selectedCards = useSelector((state: any) => state.selectedCards);
+  const winningStatus = useSelector((state: any) => state.winner);
+  const gameEnd = useSelector((state: any) => state.gameEnd);
+  const allAceUsed = useSelector((state: any) => state.allAceUsed);
 
-  const [gameOver, setGameOver] = useState(false);
+  const aceCards = ['SA', 'HA', 'DA', 'CA'];
 
   useEffect(() => {
-    if (deckCards.length === 0) {
-      setGameOver(true);
+    const aceAvailableCards = deckCards.filter((card: any) => aceCards.includes(card));
+
+    if (aceAvailableCards.length === 0 && deckCards.length > 0) {
+      dispatch({ type: 'SET_ALL_ACE_USED' });
     }
+    if (deckCards.length === 0) {
+      checkWinner();
+    }
+
     if (deckCards.length === 52) {
       generateCards();
     }
@@ -32,20 +41,47 @@ function App() {
     dispatch({ type: 'DEAL_CARDS', selectedCards: randomCards, cards: newCards });
   };
 
+  /**
+   * Resets game
+   */
   const reset = () => {
     dispatch({ type: 'RESET' });
-    setGameOver(false);
+  };
+
+  /**
+   * Calculates winner
+   */
+  const checkWinner = () => {
+    const selectedAceLength = selectedCards.filter((card: any) => aceCards.includes(card)).length;
+    if (selectedAceLength > 0) {
+      dispatch({ type: 'SET_WINNER', winner: true });
+    } else {
+      dispatch({ type: 'SET_WINNER', winner: false });
+    }
   };
 
   return (
     <div className="board">
       <CardCounter counter={deckCards.length} />
+      <img src={winner} className={winningStatus ? 'winner' : 'winner hide'} />
       <div className="card-box">
         {selectedCards.map((card: any) => {
           return <Card value={card} />;
         })}
       </div>
-      {gameOver ? (
+
+      <div className="gameover">
+        {gameEnd && !winningStatus ? (
+          <>
+            <p className="text">You Lose.</p>
+            <p className="text">Better luck next time!</p>
+          </>
+        ) : allAceUsed ? (
+          <p className="text">Game Over!!!</p>
+        ) : null}
+      </div>
+
+      {gameEnd || allAceUsed ? (
         <Button btnText={'Play Again'} align={'center'} click={reset} />
       ) : (
         <DealButton deal={generateCards} />
