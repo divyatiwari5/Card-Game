@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
-import styles from './App.module.scss';
-import winner from './assets/winner.svg';
-import { Card } from 'commons/components/Card/Card';
-import { Button } from 'commons/components/Button/Button';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CardCounter from 'CardCounter/CardCounter';
 import DealButton from 'DealButton/DealButton';
-import { useDispatch, useSelector } from 'react-redux';
+import { Button } from 'commons/components/Button/Button';
+import { Card } from 'commons/components/Card/Card';
+import winner from './assets/winner.svg';
 
 function App() {
   const dispatch = useDispatch();
@@ -16,21 +15,6 @@ function App() {
   const allAceUsed = useSelector((state: any) => state.allAceUsed);
 
   const aceCards = ['SA', 'HA', 'DA', 'CA'];
-
-  useEffect(() => {
-    const aceAvailableCards = deckCards.filter((card: any) => aceCards.includes(card));
-
-    if (aceAvailableCards.length === 0 && deckCards.length > 0) {
-      dispatch({ type: 'SET_ALL_ACE_USED' });
-    }
-    if (deckCards.length === 0) {
-      checkWinner();
-    }
-
-    if (deckCards.length === 52) {
-      generateCards();
-    }
-  }, [deckCards]);
 
   /**
    * Generate 5 random cards and remove them from the original deck
@@ -60,13 +44,28 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const aceAvailableCards = deckCards.filter((card: any) => aceCards.includes(card));
+
+    if (aceAvailableCards.length === 0 && deckCards.length > 0) {
+      dispatch({ type: 'SET_ALL_ACE_USED' });
+    }
+    if (deckCards.length === 0) {
+      checkWinner();
+    }
+
+    if (deckCards.length === 52) {
+      generateCards();
+    }
+  }, [deckCards]);
+
   return (
     <div className="board">
       <CardCounter counter={deckCards.length} />
-      <img src={winner} className={winningStatus ? 'winner' : 'winner hide'} />
+      <img src={winner} className={winningStatus ? 'winner' : 'winner hide'} alt="winner" />
       <div className="card-box">
-        {selectedCards.map((card: any) => {
-          return <Card value={card} />;
+        {selectedCards.map((card: any, i: number) => {
+          return <Card key={i} value={card} />;
         })}
       </div>
 

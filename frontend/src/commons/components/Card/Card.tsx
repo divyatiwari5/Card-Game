@@ -1,12 +1,12 @@
-import Heart from '../../../assets/Heart.svg';
 import Clover from '../../../assets/Clover.svg';
 import Diamond from '../../../assets/Diamond.svg';
+import Heart from '../../../assets/Heart.svg';
 import Spade from '../../../assets/Spade.svg';
 
 function Card(props: any) {
-  const card = props.value;
-  const number = card.slice(1);
-  const cardType = card.slice(0, 1);
+  const { value } = props;
+  const number = value.slice(1);
+  const cardType = value.slice(0, 1);
 
   /**
    *
@@ -23,10 +23,10 @@ function Card(props: any) {
     <div className="card">
       <div className="header">
         <p className="number">{number}</p>
-        <img src={getIcon()} className="sm-icon" />
+        <img src={getIcon()} className="sm-icon" alt="card-icon-small" />
       </div>
 
-      <img src={getIcon()} className="lg-icon" />
+      <img src={getIcon()} className="lg-icon" alt="card-icon-large" />
     </div>
   );
 }
