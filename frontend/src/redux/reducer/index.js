@@ -79,7 +79,7 @@ const rootReducer = (state = initialState, action) => {
     case 'SET_ALL_ACE_USED':
       return { ...state, allAceUsed: true };
     default:
-      return { ...state };
+      return state;
   }
 };
 
