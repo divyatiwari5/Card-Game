@@ -49,4 +49,21 @@ describe('rootReducer', () => {
     initialStateValues = rootReducer(undefined, { type: 'SET_ALL_ACE_USED' });
     expect(initialStateValues.allAceUsed).toBe(true);
   });
+
+  it('select cards from the deck', () => {
+    let initialStateValues = rootReducer(undefined, { type: 'SOME_RANDOM_TYPE' });
+    expect(initialStateValues.cards).toEqual(cards);
+    expect(initialStateValues.selectedCards).toEqual([]);
+
+    const randomCards = cards.sort(() => Math.random() - Math.random()).slice(0, 5);
+    const newCards = cards.filter((card) => !randomCards.includes(card));
+
+    initialStateValues = rootReducer(undefined, {
+      type: 'DEAL_CARDS',
+      cards: newCards,
+      selectedCards: randomCards,
+    });
+    expect(initialStateValues.cards).toEqual(newCards);
+    expect(initialStateValues.selectedCards).toEqual(randomCards);
+  });
 });

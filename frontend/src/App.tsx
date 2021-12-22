@@ -5,6 +5,7 @@ import DealButton from 'DealButton/DealButton';
 import { Button } from 'commons/components/Button/Button';
 import { Card } from 'commons/components/Card/Card';
 import winner from './assets/winner.svg';
+import { getRandomCardsFromDeck, filterOutRandomCardsFromDeck } from './modules/index';
 
 function App() {
   const dispatch = useDispatch();
@@ -19,9 +20,9 @@ function App() {
   /**
    * Generate 5 random cards and remove them from the original deck
    */
-  const generateCards = () => {
-    const randomCards = deckCards.sort(() => Math.random() - Math.random()).slice(0, 5);
-    const newCards = deckCards.filter((card: any) => !randomCards.includes(card));
+  const deal = () => {
+    const randomCards: string[] = getRandomCardsFromDeck(deckCards);
+    const newCards = filterOutRandomCardsFromDeck(deckCards, randomCards);
     dispatch({ type: 'DEAL_CARDS', selectedCards: randomCards, cards: newCards });
   };
 
@@ -35,8 +36,7 @@ function App() {
   /**
    * Calculates winner
    */
-  const checkWinner = () => {
-    const selectedAceLength = selectedCards.filter((card: any) => aceCards.includes(card)).length;
+  const checkWinner = (selectedAceLength: number) => {
     if (selectedAceLength > 0) {
       dispatch({ type: 'SET_WINNER', winner: true });
     } else {
@@ -51,11 +51,12 @@ function App() {
       dispatch({ type: 'SET_ALL_ACE_USED' });
     }
     if (deckCards.length === 0) {
-      checkWinner();
+      const selectedAceLength = selectedCards.filter((card: any) => aceCards.includes(card)).length;
+      checkWinner(selectedAceLength);
     }
 
     if (deckCards.length === 52) {
-      generateCards();
+      deal();
     }
   }, [deckCards]);
 
@@ -83,7 +84,7 @@ function App() {
       {gameEnd || allAceUsed ? (
         <Button btnText={'Play Again'} align={'center'} click={reset} />
       ) : (
-        <DealButton deal={generateCards} />
+        <DealButton deal={deal} />
       )}
       <Button btnText={'Reset'} align={'right'} click={reset} />
     </div>
