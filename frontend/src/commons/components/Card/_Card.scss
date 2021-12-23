@@ -1,7 +1,7 @@
 .card {
   background: white;
-  width: 200px;
-  height: 280px;
+  width: 192px;
+  height: 264px;
   border-radius: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   position: relative;
@@ -21,7 +21,7 @@
     }
     & > .number {
       font-weight: 700;
-      font-size: 6rem;
+      font-size: 5.6rem;
       margin: 50px 0;
       line-height: 0;
       @media (max-width: 500px) {
@@ -45,7 +45,8 @@
     position: absolute;
     bottom: 30px;
     right: 30px;
-    height: 60px;
+    height: 90px;
+    width: 90px;
     @media (max-width: 500px) {
       height: 40px;
     }

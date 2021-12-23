@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Courier+Prime:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Courier+Prime:wght@400;700&display=swap');
 @import './tailwind.css';
 @import './variables';
 @import '../commons/common';
@@ -34,7 +33,7 @@ body,
   }
   & > .card-box {
     display: grid;
-    margin-top: 70px;
+    margin-top: 40px;
     grid-template-columns: repeat(5, 0fr);
     justify-content: center;
     @media (max-width: 500px) {
@@ -47,7 +46,7 @@ body,
     flex-direction: column;
     margin-top: 35px;
     & > .text {
-      font-size: 1rem;
+      font-size: 2.3rem;
       text-align: center;
       font-weight: 400;
       color: white;

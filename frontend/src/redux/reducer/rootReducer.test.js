@@ -7,9 +7,10 @@ describe('rootReducer', () => {
   const initialState = {
     cards: cards,
     selectedCards: [],
-    winner: false,
+    isWinner: false,
     allAceUsed: false,
-    gameEnd: false,
+    isGameEnd: false,
+    usedAceCounter: 0,
   };
 
   it('returns initial state when no action is passed', () => {
@@ -22,24 +23,24 @@ describe('rootReducer', () => {
     expect(reducer).toEqual(initialState);
   });
 
-  it('sets winner when the game is won', () => {
+  it('sets isWinner to true when the game is won', () => {
     let initialStateValues = rootReducer(undefined, { type: 'SOME_RANDOM_TYPE' });
-    expect(initialStateValues.winner).toBe(false);
-    expect(initialStateValues.gameEnd).toBe(false);
+    expect(initialStateValues.isWinner).toBe(false);
+    expect(initialStateValues.isGameEnd).toBe(false);
 
-    initialStateValues = rootReducer(undefined, { type: 'SET_WINNER', winner: true });
-    expect(initialStateValues.winner).toBe(true);
-    expect(initialStateValues.gameEnd).toBe(true);
+    initialStateValues = rootReducer(undefined, { type: 'SET_WINNER', isWinner: true });
+    expect(initialStateValues.isWinner).toBe(true);
+    expect(initialStateValues.isGameEnd).toBe(true);
   });
 
-  it('sets winner when the game is lost', () => {
+  it('sets isWinner to false when the game is lost', () => {
     let initialStateValues = rootReducer(undefined, { type: 'SOME_RANDOM_TYPE' });
-    expect(initialStateValues.winner).toBe(false);
-    expect(initialStateValues.gameEnd).toBe(false);
+    expect(initialStateValues.isWinner).toBe(false);
+    expect(initialStateValues.isGameEnd).toBe(false);
 
-    initialStateValues = rootReducer(undefined, { type: 'SET_WINNER', winner: false });
-    expect(initialStateValues.winner).toBe(false);
-    expect(initialStateValues.gameEnd).toBe(true);
+    initialStateValues = rootReducer(undefined, { type: 'SET_WINNER', isWinner: false });
+    expect(initialStateValues.isWinner).toBe(false);
+    expect(initialStateValues.isGameEnd).toBe(true);
   });
 
   it('sets all used ace to true when all the aces are used', () => {
@@ -65,5 +66,13 @@ describe('rootReducer', () => {
     });
     expect(initialStateValues.cards).toEqual(newCards);
     expect(initialStateValues.selectedCards).toEqual(randomCards);
+  });
+
+  it('sets used ace`s counter', () => {
+    let initialStateValues = rootReducer(undefined, { type: 'SOME_RANDOM_TYPE' });
+    expect(initialStateValues.usedAceCounter).toEqual(0);
+
+    initialStateValues = rootReducer(undefined, { type: 'SET_ACE_COUNTER', usedAceCounter: 3 });
+    expect(initialStateValues.usedAceCounter).toEqual(3);
   });
 });

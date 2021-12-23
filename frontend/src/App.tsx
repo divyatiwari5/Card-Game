@@ -11,10 +11,10 @@ function App() {
   const dispatch = useDispatch();
   const deckCards = useSelector((state: any) => state.cards);
   const selectedCards = useSelector((state: any) => state.selectedCards);
-  const winningStatus = useSelector((state: any) => state.winner);
-  const gameEnd = useSelector((state: any) => state.gameEnd);
+  const isWinner = useSelector((state: any) => state.isWinner);
+  const isGameEnd = useSelector((state: any) => state.isGameEnd);
   const allAceUsed = useSelector((state: any) => state.allAceUsed);
-  const aceCounter = useSelector((state: any) => state.aceCounter);
+  const usedAceCounter = useSelector((state: any) => state.usedAceCounter);
 
   const aceCards = ['SA', 'HA', 'DA', 'CA'];
 
@@ -39,14 +39,14 @@ function App() {
    */
   const checkWinner = (selectedAceLength: number) => {
     if (selectedAceLength > 0) {
-      dispatch({ type: 'SET_WINNER', winner: true });
+      dispatch({ type: 'SET_WINNER', isWinner: true });
     } else {
-      dispatch({ type: 'SET_WINNER', winner: false });
+      dispatch({ type: 'SET_WINNER', isWinner: false });
     }
   };
 
   useEffect(() => {
-    if (aceCounter === 4) {
+    if (usedAceCounter === 4) {
       dispatch({ type: 'SET_ALL_ACE_USED' });
     }
     if (deckCards.length === 0) {
@@ -57,40 +57,59 @@ function App() {
     if (deckCards.length === 52) {
       deal();
     }
-  }, [deckCards, aceCounter]);
+  }, [deckCards, usedAceCounter]);
 
   useEffect(() => {
-    const aceUsed = selectedCards.filter((card: any) => aceCards.includes(card)).length;
+    const aceInSelectedCard = selectedCards.filter((card: any) => aceCards.includes(card)).length;
 
-    dispatch({ type: 'SET_ACE_COUNTER', aceCounter: aceCounter + aceUsed });
+    dispatch({ type: 'SET_ACE_COUNTER', usedAceCounter: usedAceCounter + aceInSelectedCard });
   }, [selectedCards]);
+
+  /**
+   * Checks if game is over or lost
+   * @returns text element on the basis of result
+   */
+  const getResult = () => {
+    if (!isWinner) {
+      if (isGameEnd) {
+        return (
+          <>
+            <p className="text">You Lose.</p>
+            <p className="text">Better luck next time!</p>
+          </>
+        );
+      } else if (allAceUsed) {
+        return <p className="text">Game Over!!!</p>;
+      }
+    }
+    return null;
+  };
+
+  /**
+   * Returns button on the basis of
+   * @returns button
+   */
+  const getButton = () => {
+    if (isGameEnd || allAceUsed) {
+      return <Button btnText={'Play Again'} align={'center'} click={reset} />;
+    }
+    return <DealButton deal={deal} />;
+  };
 
   return (
     <div className="board">
-      <CardCounter counter={deckCards.length} ace={4 - aceCounter} />
-      <img src={winner} className={winningStatus ? 'winner' : 'winner hide'} alt="winner" />
+      <CardCounter counter={deckCards.length} ace={4 - usedAceCounter} />
+      <img src={winner} className={isWinner ? 'winner' : 'winner hide'} alt="winner" />
       <div className="card-box">
         {selectedCards.map((card: any, i: number) => {
           return <Card key={i} value={card} />;
         })}
       </div>
 
-      <div className="gameover">
-        {gameEnd && !winningStatus ? (
-          <>
-            <p className="text">You Lose.</p>
-            <p className="text">Better luck next time!</p>
-          </>
-        ) : allAceUsed ? (
-          <p className="text">Game Over!!!</p>
-        ) : null}
-      </div>
+      <div className="gameover">{getResult()}</div>
 
-      {gameEnd || allAceUsed ? (
-        <Button btnText={'Play Again'} align={'center'} click={reset} />
-      ) : (
-        <DealButton deal={deal} />
-      )}
+      {getButton()}
+
       <Button btnText={'Reset'} align={'right'} click={reset} />
     </div>
   );

@@ -54,10 +54,10 @@ const initialState = {
     'C2',
   ],
   selectedCards: [],
-  winner: false,
+  isWinner: false,
   allAceUsed: false,
-  aceCounter: 0,
-  gameEnd: false,
+  usedAceCounter: 0,
+  isGameEnd: false,
 };
 
 // Spade, Heart, Diamonds, Clubs
@@ -74,13 +74,13 @@ const rootReducer = (state = initialState, action) => {
     case 'RESET':
       return { ...initialState };
     case 'SET_WINNER':
-      return { ...state, winner: action.winner, gameEnd: true };
+      return { ...state, isWinner: action.isWinner, isGameEnd: true };
     case 'DEAL_CARDS':
       return { ...state, cards: action.cards, selectedCards: action.selectedCards };
     case 'SET_ALL_ACE_USED':
       return { ...state, allAceUsed: true };
     case 'SET_ACE_COUNTER':
-      return { ...state, aceCounter: action.aceCounter };
+      return { ...state, usedAceCounter: action.usedAceCounter };
     default:
       return state;
   }
