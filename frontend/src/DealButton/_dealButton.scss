@@ -1,12 +1,17 @@
 .deal-btn {
   background: $yellow;
   border-radius: 14px;
-  font-size: 2rem;
+  font-size: 4rem;
+  line-height: 88px;
   font-weight: 400;
   text-transform: uppercase;
   font-family: Alfa Slab One;
   padding: 2px 48px;
   display: block;
   margin: auto;
+  border: none;
   margin-top: 80px;
+  &:hover {
+    cursor: pointer;
+  }
 }

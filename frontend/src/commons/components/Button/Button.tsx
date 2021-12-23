@@ -1,6 +1,9 @@
 function Button(props: any) {
   const { btnText, click } = props;
 
+  /***
+   * Returns className on the basis of alignment property
+   */
   const getClassName = () => {
     let className = 'button';
     if (props.align === 'center') {

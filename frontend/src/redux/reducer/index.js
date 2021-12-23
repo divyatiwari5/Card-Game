@@ -56,6 +56,7 @@ const initialState = {
   selectedCards: [],
   winner: false,
   allAceUsed: false,
+  aceCounter: 0,
   gameEnd: false,
 };
 
@@ -78,6 +79,8 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, cards: action.cards, selectedCards: action.selectedCards };
     case 'SET_ALL_ACE_USED':
       return { ...state, allAceUsed: true };
+    case 'SET_ACE_COUNTER':
+      return { ...state, aceCounter: action.aceCounter };
     default:
       return state;
   }

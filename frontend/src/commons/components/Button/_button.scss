@@ -1,7 +1,9 @@
 .button {
   border: 1px solid $yellow;
   color: $yellow;
-  border-radius: 12px;
+  background: transparent;
+  font-family: 'Alfa Slab One', cursive;
+  border-radius: 14px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   padding: 5px 20px;
   font-weight: 900;
@@ -16,5 +18,15 @@
     right: 20px;
     position: fixed;
     bottom: 20px;
+    @media (max-width: 769px) {
+      margin: auto;
+      display: block;
+      margin-top: 20px;
+      position: initial;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 }

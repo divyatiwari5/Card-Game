@@ -9,7 +9,7 @@ function Card(props: any) {
   const cardType = value.slice(0, 1);
 
   /**
-   *
+   * Returns icon on the basis of initial letter of card
    * @returns card icon
    */
   const getIcon = () => {

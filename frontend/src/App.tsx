@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CardCounter from 'CardCounter/CardCounter';
 import DealButton from 'DealButton/DealButton';
@@ -14,6 +14,7 @@ function App() {
   const winningStatus = useSelector((state: any) => state.winner);
   const gameEnd = useSelector((state: any) => state.gameEnd);
   const allAceUsed = useSelector((state: any) => state.allAceUsed);
+  const aceCounter = useSelector((state: any) => state.aceCounter);
 
   const aceCards = ['SA', 'HA', 'DA', 'CA'];
 
@@ -45,9 +46,7 @@ function App() {
   };
 
   useEffect(() => {
-    const aceAvailableCards = deckCards.filter((card: any) => aceCards.includes(card));
-
-    if (aceAvailableCards.length === 0 && deckCards.length > 0) {
+    if (aceCounter === 4) {
       dispatch({ type: 'SET_ALL_ACE_USED' });
     }
     if (deckCards.length === 0) {
@@ -58,11 +57,17 @@ function App() {
     if (deckCards.length === 52) {
       deal();
     }
-  }, [deckCards]);
+  }, [deckCards, aceCounter]);
+
+  useEffect(() => {
+    const aceUsed = selectedCards.filter((card: any) => aceCards.includes(card)).length;
+
+    dispatch({ type: 'SET_ACE_COUNTER', aceCounter: aceCounter + aceUsed });
+  }, [selectedCards]);
 
   return (
     <div className="board">
-      <CardCounter counter={deckCards.length} />
+      <CardCounter counter={deckCards.length} ace={4 - aceCounter} />
       <img src={winner} className={winningStatus ? 'winner' : 'winner hide'} alt="winner" />
       <div className="card-box">
         {selectedCards.map((card: any, i: number) => {
