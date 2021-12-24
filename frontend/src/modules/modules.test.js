@@ -1,6 +1,5 @@
-import { filterOutRandomCardsFromDeck, getRandomCardsFromDeck } from './index';
-
 const deckCards = require('./../data/cards.json');
+import { filterOutRandomCardsFromDeck, getRandomCardsFromDeck } from './index';
 
 describe('Tests modules', () => {
   it('Filter out randomaly generated card from the deck', () => {

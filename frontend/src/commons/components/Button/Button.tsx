@@ -1,8 +1,9 @@
 function Button(props: any) {
   const { btnText, click } = props;
 
-  /***
+  /**
    * Returns className on the basis of alignment property
+   * @returns classname
    */
   const getClassName = () => {
     let className = 'button';
@@ -15,7 +16,7 @@ function Button(props: any) {
   };
 
   return (
-    <button className={getClassName()} onClick={click}>
+    <button type="button" className={getClassName()} onClick={click}>
       {btnText}
     </button>
   );

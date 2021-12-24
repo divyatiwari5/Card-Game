@@ -17,10 +17,11 @@ function Card(props: any) {
     if (cardType === 'D') return Diamond;
     if (cardType === 'C') return Clover;
     if (cardType === 'H') return Heart;
+    return;
   };
 
   return (
-    <div className="card">
+    <div className="card" key={value}>
       <div className="header">
         <p className="number">{number}</p>
         <img src={getIcon()} className="sm-icon" alt="card-icon-small" />

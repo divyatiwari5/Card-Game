@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CardCounter from 'CardCounter/CardCounter';
 import DealButton from 'DealButton/DealButton';
@@ -78,7 +78,8 @@ function App() {
             <p className="text">Better luck next time!</p>
           </>
         );
-      } else if (allAceUsed) {
+      }
+      if (allAceUsed) {
         return <p className="text">Game Over!!!</p>;
       }
     }
@@ -90,9 +91,8 @@ function App() {
    * @returns button
    */
   const getButton = () => {
-    if (isGameEnd || allAceUsed) {
+    if (isGameEnd || allAceUsed)
       return <Button btnText={'Play Again'} align={'center'} click={reset} />;
-    }
     return <DealButton deal={deal} />;
   };
 
@@ -105,11 +105,8 @@ function App() {
           return <Card key={i} value={card} />;
         })}
       </div>
-
       <div className="gameover">{getResult()}</div>
-
       {getButton()}
-
       <Button btnText={'Reset'} align={'right'} click={reset} />
     </div>
   );

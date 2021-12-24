@@ -1,12 +1,11 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import App from './App';
-import store from './store';
-import { getRandomCardsFromDeck, filterOutRandomCardsFromDeck } from './modules/index';
-
 const deckCards = require('./data/cards.json');
+import { getRandomCardsFromDeck, filterOutRandomCardsFromDeck } from './modules/index';
+import store from './store';
+
 const mockStore = configureStore();
 const reduxStore = mockStore();
 
@@ -30,10 +29,9 @@ test('Deal function', () => {
 
   reduxStore.dispatch({ type: 'DEAL_CARDS', selectedCards: randomCards, cards: newCards });
 
-  // expect(reduxStore.getActions()).toEqual([
-  //   { type: 'DEAL_CARDS', selectedCards: randomCards, cards: newCards }
-  // ])
-
+  expect(reduxStore.getActions()).toEqual([
+    { type: 'DEAL_CARDS', selectedCards: randomCards, cards: newCards },
+  ]);
   // THEN
-  expect(reduxStore.selectedCards).toHaveLength > 0;
+  // expect(reduxStore.selectedCards).toHaveLength(5);
 });

@@ -1,6 +1,6 @@
+const deckCards = require('../../data/cards.json');
 import rootReducer from './index';
 
-const deckCards = require('../../data/cards.json');
 const { cards } = deckCards;
 
 describe('rootReducer', () => {
