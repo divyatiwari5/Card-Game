@@ -5,7 +5,7 @@ function CardCounter(props: any) {
       <p className="counter">{counter}</p>
       <p className="text">Cards Left</p>
       <div>
-        <p>(Ace: {ace} Left)</p>
+        <p>(Ace: {ace} remaining)</p>
       </div>
     </div>
   );

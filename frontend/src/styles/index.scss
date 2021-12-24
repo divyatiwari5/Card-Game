@@ -26,6 +26,7 @@ body,
     display: block;
     @media (max-width: 500px) {
       width: 100%;
+      margin-top: -52px;
     }
     &.hide {
       visibility: hidden;
@@ -39,6 +40,7 @@ body,
     @media (max-width: 500px) {
       grid-template-columns: repeat(3, 0fr);
       grid-gap: 1rem;
+      margin-top: 20px;
     }
   }
   & > .gameover {
