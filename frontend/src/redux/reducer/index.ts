@@ -60,6 +60,15 @@ const initialState = {
   isGameEnd: false,
 };
 
+interface IAction {
+  type: string;
+  isWinner: boolean;
+  cards: string[];
+  selectedCards: [];
+  usedAceCounter: number;
+  allAceUsed: boolean;
+  isGameEnd: boolean;
+}
 // Spade, Heart, Diamonds, Clubs
 // Ace, King, Queen, Jack, 10, 9, 8, 7, 6, 5, 4, 3, 2
 
@@ -69,7 +78,7 @@ const initialState = {
 // 3. When all aces have been dealt - Game Over
 // 4. If ace is present in the last deal - Declare Winner else Better luck next time
 
-const rootReducer = (state = initialState, action) => {
+const rootReducer = (state = initialState, action: IAction) => {
   switch (action.type) {
     case 'RESET':
       return { ...initialState };

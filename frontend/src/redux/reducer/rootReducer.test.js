@@ -1,11 +1,11 @@
-const deckCards = require('../../data/cards.json');
+import * as deckCards from '../../data/cards.json';
 import rootReducer from './index';
 
 const { cards } = deckCards;
 
 describe('rootReducer', () => {
   const initialState = {
-    cards: cards,
+    cards,
     selectedCards: [],
     isWinner: false,
     allAceUsed: false,

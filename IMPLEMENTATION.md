@@ -24,7 +24,7 @@
   - `DealButton`: Deal Button component
   - `modules`: defined common modules
   - `redux`: defined reducer and it's test cases
-  - `store.js`: create redux store
+  - `store.ts`: create redux store
   - `styles`:
     - `_variables.scss`: Variables used in the scss files
     - `index.scss`: Import all the scss files. Defined scss for root level component

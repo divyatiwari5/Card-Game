@@ -3,7 +3,11 @@ import Diamond from '../../../assets/Diamond.svg';
 import Heart from '../../../assets/Heart.svg';
 import Spade from '../../../assets/Spade.svg';
 
-function Card(props: any) {
+interface IProps {
+  value: string;
+}
+
+function Card(props: IProps) {
   const { value } = props;
   const number = value.slice(1);
   const cardType = value.slice(0, 1);
@@ -17,7 +21,8 @@ function Card(props: any) {
     if (cardType === 'D') return Diamond;
     if (cardType === 'C') return Clover;
     if (cardType === 'H') return Heart;
-    return;
+
+    return '';
   };
 
   return (

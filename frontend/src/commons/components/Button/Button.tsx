@@ -1,4 +1,11 @@
-function Button(props: any) {
+import { MouseEventHandler } from 'react';
+
+interface IProps {
+  btnText: string;
+  click: MouseEventHandler;
+  align: string;
+}
+function YellowButton(props: IProps) {
   const { btnText, click } = props;
 
   /**
@@ -22,4 +29,4 @@ function Button(props: any) {
   );
 }
 
-export { Button };
+export { YellowButton };

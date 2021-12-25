@@ -1,4 +1,9 @@
-function CardCounter(props: any) {
+interface IProps {
+  counter: number;
+  ace: number;
+}
+
+function CardCounter(props: IProps) {
   const { counter, ace } = props;
   return (
     <div className="counter-box">

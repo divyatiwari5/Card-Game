@@ -2,19 +2,28 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CardCounter from 'CardCounter/CardCounter';
 import DealButton from 'DealButton/DealButton';
-import { Button } from 'commons/components/Button/Button';
+import { YellowButton } from 'commons/components/Button/Button';
 import { Card } from 'commons/components/Card/Card';
 import winner from './assets/winner.svg';
 import { getRandomCardsFromDeck, filterOutRandomCardsFromDeck } from './modules/index';
 
+interface IProps {
+  cards: string[];
+  selectedCards: string[];
+  isWinner: boolean;
+  allAceUsed: boolean;
+  usedAceCounter: number;
+  isGameEnd: boolean;
+}
+
 function App() {
   const dispatch = useDispatch();
-  const deckCards = useSelector((state: any) => state.cards);
-  const selectedCards = useSelector((state: any) => state.selectedCards);
-  const isWinner = useSelector((state: any) => state.isWinner);
-  const isGameEnd = useSelector((state: any) => state.isGameEnd);
-  const allAceUsed = useSelector((state: any) => state.allAceUsed);
-  const usedAceCounter = useSelector((state: any) => state.usedAceCounter);
+  const deckCards = useSelector((state: IProps) => state.cards);
+  const selectedCards = useSelector((state: IProps) => state.selectedCards);
+  const isWinner = useSelector((state: IProps) => state.isWinner);
+  const isGameEnd = useSelector((state: IProps) => state.isGameEnd);
+  const allAceUsed = useSelector((state: IProps) => state.allAceUsed);
+  const usedAceCounter = useSelector((state: IProps) => state.usedAceCounter);
 
   const aceCards = ['SA', 'HA', 'DA', 'CA'];
 
@@ -22,7 +31,7 @@ function App() {
    * Generate 5 random cards and remove them from the original deck
    */
   const deal = () => {
-    const randomCards: string[] = getRandomCardsFromDeck(deckCards);
+    const randomCards = getRandomCardsFromDeck(deckCards);
     const newCards = filterOutRandomCardsFromDeck(deckCards, randomCards);
     dispatch({ type: 'DEAL_CARDS', selectedCards: randomCards, cards: newCards });
   };
@@ -50,7 +59,8 @@ function App() {
       dispatch({ type: 'SET_ALL_ACE_USED' });
     }
     if (deckCards.length === 0) {
-      const selectedAceLength = selectedCards.filter((card: any) => aceCards.includes(card)).length;
+      const selectedAceLength = selectedCards.filter((card: string) => aceCards.includes(card))
+        .length;
       checkWinner(selectedAceLength);
     }
 
@@ -60,7 +70,8 @@ function App() {
   }, [deckCards, usedAceCounter]);
 
   useEffect(() => {
-    const aceInSelectedCard = selectedCards.filter((card: any) => aceCards.includes(card)).length;
+    const aceInSelectedCard = selectedCards.filter((card: string) => aceCards.includes(card))
+      .length;
 
     dispatch({ type: 'SET_ACE_COUNTER', usedAceCounter: usedAceCounter + aceInSelectedCard });
   }, [selectedCards]);
@@ -92,7 +103,7 @@ function App() {
    */
   const getButton = () => {
     if (isGameEnd || allAceUsed)
-      return <Button btnText={'Play Again'} align={'center'} click={reset} />;
+      return <YellowButton btnText="Play Again" align="center" click={reset} />;
     return <DealButton deal={deal} />;
   };
 
@@ -101,13 +112,13 @@ function App() {
       <CardCounter counter={deckCards.length} ace={4 - usedAceCounter} />
       <img src={winner} className={isWinner ? 'winner' : 'winner hide'} alt="winner" />
       <div className="card-box">
-        {selectedCards.map((card: any, i: number) => {
+        {selectedCards.map((card: string, i: number) => {
           return <Card key={i} value={card} />;
         })}
       </div>
       <div className="gameover">{getResult()}</div>
       {getButton()}
-      <Button btnText={'Reset'} align={'right'} click={reset} />
+      <YellowButton btnText="Reset" align="right" click={reset} />
     </div>
   );
 }

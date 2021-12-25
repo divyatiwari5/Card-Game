@@ -1,4 +1,4 @@
-const deckCards = require('./../data/cards.json');
+import * as deckCards from '../data/cards.json';
 import { filterOutRandomCardsFromDeck, getRandomCardsFromDeck } from './index';
 
 describe('Tests modules', () => {

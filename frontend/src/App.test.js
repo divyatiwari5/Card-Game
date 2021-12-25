@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import App from './App';
-const deckCards = require('./data/cards.json');
+import * as deckCards from './data/cards.json';
 import { getRandomCardsFromDeck, filterOutRandomCardsFromDeck } from './modules/index';
 import store from './store';
 
