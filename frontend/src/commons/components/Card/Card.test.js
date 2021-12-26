@@ -23,14 +23,14 @@ it('renders card with deck card value', () => {
   expect(container.textContent).toBe('10');
 });
 
-it('enables red class for Heart and Diamond', () => {
+it('renders red class for Heart and Diamond', () => {
   act(() => {
     render(<Card value="H10" />, container);
   });
   expect(container.firstChild.firstChild.firstChild.className).toBe('number red');
 });
 
-it('does not enable red class for Spade and Clover', () => {
+it('does not render red class for Spade and Clover', () => {
   act(() => {
     render(<Card value="S10" />, container);
   });

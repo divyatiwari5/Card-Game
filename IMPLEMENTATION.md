@@ -8,7 +8,9 @@
 - [x] `Reset` button resets the game
 - [x] When all the aces have been dealt, "Game Over" is displayed
 - [x] If there is an ace in the last draw and there are no more cards left to deal, `Winner` is declared, otherwise `You Lose. Better luck next time!` is displayed
-- [x] Card Counter and ace counter is being displayed on the screen
+- [x] Card Counter is being displayed on the screen
+- [x] Ace counter is being displayed on the screen
+- [x] Animations 👯👯
 
 ### App structure
 
@@ -39,19 +41,30 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ### Existing test scenarios
 
-- [x] Test cases for reducers
+- [x] [Test cases for reducers](https://github.com/uplift-interview/uplift-interview-divya-tiwari/blob/b50d04daef659d3245b2b6797d1e7ded3913bcd1/frontend/src/redux/reducer/rootReducer.test.js)
   - [x] When no action is passed
   - [x] When game is reset
   - [x] When game is won
   - [x] When game is lost
   - [x] When all aces are used
   - [x] Deal cards
-- [x] Test cases for modules
+  - [x] Set used ace's counter
+- [x] [Test cases for modules](https://github.com/uplift-interview/uplift-interview-divya-tiwari/blob/b50d04daef659d3245b2b6797d1e7ded3913bcd1/frontend/src/modules/modules.test.js)
   - [x] getRandomCardsFromDeck
-  - [x] filterOutRandomCardsFromDeck
-- [x] Test cases for App.tsx
+    - [x] Return and remove 5 randomly generated cards from the deck if deck size is greater than 5
+    - [x] Return less than 5 cards if deck size is less than 5 and returns empty new deck
+- [x] [Test cases for App.tsx](https://github.com/uplift-interview/uplift-interview-divya-tiwari/blob/b50d04daef659d3245b2b6797d1e7ded3913bcd1/frontend/src/App.test.js)
   - [x] App is rendered successfully
   - [x] Deal function
+- [x] [Yellow Button component](https://github.com/uplift-interview/uplift-interview-divya-tiwari/blob/b50d04daef659d3245b2b6797d1e7ded3913bcd1/frontend/src/commons/components/Button/Button.test.js)
+  - [x] renders button with Reset or PlayAgain text
+  - [x] align button to center or right or default position
+- [x] [Card Component](https://github.com/uplift-interview/uplift-interview-divya-tiwari/blob/b50d04daef659d3245b2b6797d1e7ded3913bcd1/frontend/src/commons/components/Card/Card.test.js)
+  - [x] renders card with deck card value
+  - [x] renders red class for Heart and Diamond
+  - [x] does not render red class for Spade and Clover
+- [x] [Card Counter Component](https://github.com/uplift-interview/uplift-interview-divya-tiwari/blob/b50d04daef659d3245b2b6797d1e7ded3913bcd1/frontend/src/CardCounter/CardCounter.test.js)
+  - [x] renders card counter
 
 ### Run test cases
 

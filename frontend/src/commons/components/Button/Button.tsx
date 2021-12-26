@@ -28,5 +28,9 @@ function YellowButton(props: IProps) {
     </button>
   );
 }
-
+YellowButton.defaultProps = {
+  btnText: 'Reset',
+  click: {},
+  align: '',
+};
 export { YellowButton };
