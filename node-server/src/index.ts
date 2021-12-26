@@ -11,7 +11,7 @@ const server = new ApolloServer({ typeDefs, resolvers });
 const app = express();
 server.applyMiddleware({ app });
 
-const PORT = 5000;
+const PORT = 6000;
 
 // Start the server
 app.listen({ port: PORT }, () =>

@@ -36,7 +36,7 @@ WORKDIR /code/server
 # Install python requirements
 RUN poetry export -f requirements.txt --output /code/server/requirements.txt && pip install -r requirements.txt
 
-EXPOSE 5000
+EXPOSE 6000
 
 ENTRYPOINT ["/bin/bash", "/code/docker/Docker.server/entrypoint.sh"]
 CMD ["development"]
