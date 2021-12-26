@@ -1,25 +1,24 @@
 import * as deckCards from '../data/cards.json';
-import { filterOutRandomCardsFromDeck, getRandomCardsFromDeck } from './index';
+import { getRandomCardsFromDeck } from './index';
 
-describe('Tests modules', () => {
-  it('Filter out randomaly generated card from the deck', () => {
-    // GIVEN
-    const card = ['SA', 'CA', '10', '9', '8'];
-    const randomCards = ['SA', 'CA'];
-
-    // WHEN
-    const newDeck = filterOutRandomCardsFromDeck(card, randomCards);
-
-    // THEN
-    expect(newDeck).toEqual(['10', '9', '8']);
-  });
-
-  it('returns 5 random cards from the deck', () => {
+describe('Tests various scenarios of randomCard generation function', () => {
+  it('returns 5 random cards and remove those 5 cards from the deck if deck contains more than 5 cards', () => {
     // GIVEN
     const { cards } = deckCards;
     // WHEN
-    const randomCards = getRandomCardsFromDeck(cards);
+    const [randomCards, newCards] = getRandomCardsFromDeck(cards);
     // THEN
     expect(randomCards).toHaveLength(5);
+    expect(newCards).toHaveLength(47);
+  });
+
+  it('returns less than 5 random cards and empty deck if deck contains less than 5 cards', () => {
+    // GIVEN
+    const { less_cards } = deckCards;
+    // WHEN
+    const [randomCards, newCards] = getRandomCardsFromDeck(less_cards);
+    // THEN
+    expect(randomCards).toHaveLength(2);
+    expect(newCards).toHaveLength(0);
   });
 });

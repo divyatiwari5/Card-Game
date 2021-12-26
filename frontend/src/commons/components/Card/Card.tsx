@@ -25,10 +25,21 @@ function Card(props: IProps) {
     return '';
   };
 
+  /**
+   * Returns card number classname on the basis of card type
+   * @returns card text className
+   */
+  const getClassName = () => {
+    let className = 'number';
+    if (cardType === 'H' || cardType === 'D') className += ' red';
+
+    return className;
+  };
+
   return (
     <div className="card" key={value}>
       <div className="header">
-        <p className="number">{number}</p>
+        <p className={getClassName()}>{number}</p>
         <img src={getIcon()} className="sm-icon" alt="card-icon-small" />
       </div>
 

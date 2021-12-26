@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Confetti from 'react-confetti';
 import CardCounter from 'CardCounter/CardCounter';
 import DealButton from 'DealButton/DealButton';
 import { YellowButton } from 'commons/components/Button/Button';
 import { Card } from 'commons/components/Card/Card';
 import winner from './assets/winner.svg';
-import { getRandomCardsFromDeck, filterOutRandomCardsFromDeck } from './modules/index';
+import { getRandomCardsFromDeck } from './modules/index';
 
 interface IProps {
   cards: string[];
@@ -31,8 +32,7 @@ function App() {
    * Generate 5 random cards and remove them from the original deck
    */
   const deal = () => {
-    const randomCards = getRandomCardsFromDeck(deckCards);
-    const newCards = filterOutRandomCardsFromDeck(deckCards, randomCards);
+    const [randomCards, newCards] = getRandomCardsFromDeck(deckCards);
     dispatch({ type: 'DEAL_CARDS', selectedCards: randomCards, cards: newCards });
   };
 
@@ -110,7 +110,12 @@ function App() {
   return (
     <div className="board">
       <CardCounter counter={deckCards.length} ace={4 - usedAceCounter} />
-      <img src={winner} className={isWinner ? 'winner' : 'winner hide'} alt="winner" />
+      {isWinner ? (
+        <>
+          <img src={winner} className={'winner'} alt="winner" />
+          <Confetti numberOfPieces={20} />
+        </>
+      ) : null}
       <div className="card-box">
         {selectedCards.map((card: string, i: number) => {
           return <Card key={i} value={card} />;
@@ -118,7 +123,9 @@ function App() {
       </div>
       <div className="gameover">{getResult()}</div>
       {getButton()}
-      <YellowButton btnText="Reset" align="right" click={reset} />
+      {!isGameEnd && !allAceUsed ? (
+        <YellowButton btnText="Reset" align="right" click={reset} />
+      ) : null}
     </div>
   );
 }
