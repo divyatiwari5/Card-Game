@@ -9,27 +9,37 @@
   @media (min-width: 501px) {
     margin: 0 10px;
     &:nth-of-type(1) {
-      transform: rotate(10deg);
       animation: fromTopToMid 0.2s;
     }
     &:nth-of-type(2) {
-      transform: rotate(6deg);
-      margin-top: 35px;
       animation: fromTopToMid 0.3s;
     }
-    &:nth-of-type(3) {
-      transform: rotate(0deg);
-      margin-top: 50px;
-      animation: fromTopToMid 0.4s;
-    }
-    &:nth-of-type(4) {
-      transform: rotate(-6deg);
-      margin-top: 35px;
-      animation: fromTopToMid 0.5s;
-    }
-    &:nth-of-type(5) {
-      transform: rotate(-10deg);
-      animation: fromTopToMid 0.6s;
+  }
+  &.curvy {
+    @media (min-width: 501px) {
+      &:nth-of-type(1) {
+        transform: rotate(10deg);
+        animation: fromTopToMid 0.2s;
+      }
+      &:nth-of-type(2) {
+        transform: rotate(6deg);
+        margin-top: 35px;
+        animation: fromTopToMid 0.3s;
+      }
+      &:nth-of-type(3) {
+        transform: rotate(0deg);
+        margin-top: 50px;
+        animation: fromTopToMid 0.4s;
+      }
+      &:nth-of-type(4) {
+        transform: rotate(-6deg);
+        margin-top: 35px;
+        animation: fromTopToMid 0.5s;
+      }
+      &:nth-of-type(5) {
+        transform: rotate(-10deg);
+        animation: fromTopToMid 0.6s;
+      }
     }
   }
 

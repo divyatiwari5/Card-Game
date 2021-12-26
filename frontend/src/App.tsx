@@ -118,7 +118,7 @@ function App() {
       ) : null}
       <div className="card-box">
         {selectedCards.map((card: string, i: number) => {
-          return <Card key={i} value={card} />;
+          return <Card key={i} value={card} total={selectedCards.length} />;
         })}
       </div>
       <div className="gameover">{getResult()}</div>

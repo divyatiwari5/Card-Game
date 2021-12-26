@@ -5,12 +5,14 @@ import Spade from '../../../assets/Spade.svg';
 
 interface IProps {
   value: string;
+  total: number;
 }
 
 function Card(props: IProps) {
-  const { value } = props;
+  const { value, total } = props;
   const number = value.slice(1);
   const cardType = value.slice(0, 1);
+  const curvyCardPosition = total > 2;
 
   /**
    * Returns icon on the basis of initial letter of card
@@ -37,7 +39,7 @@ function Card(props: IProps) {
   };
 
   return (
-    <div className="card" key={value}>
+    <div className={curvyCardPosition ? 'card curvy' : 'card'} key={value}>
       <div className="header">
         <p className={getClassName()}>{number}</p>
         <img src={getIcon()} className="sm-icon" alt="card-icon-small" />
