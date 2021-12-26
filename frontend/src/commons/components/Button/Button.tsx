@@ -1,9 +1,9 @@
 import { MouseEventHandler } from 'react';
 
 interface IProps {
-  btnText: string;
-  click: MouseEventHandler;
-  align: string;
+  btnText?: string;
+  click?: MouseEventHandler;
+  align?: string;
 }
 function YellowButton(props: IProps) {
   const { btnText, click } = props;
@@ -28,9 +28,5 @@ function YellowButton(props: IProps) {
     </button>
   );
 }
-YellowButton.defaultProps = {
-  btnText: 'Reset',
-  click: {},
-  align: '',
-};
+
 export { YellowButton };

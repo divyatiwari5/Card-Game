@@ -1,6 +1,5 @@
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
-
 import CardCounter from './CardCounter';
 
 let container = null;

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import Confetti from 'react-confetti';
+import { useDispatch, useSelector } from 'react-redux';
 import CardCounter from 'CardCounter/CardCounter';
 import DealButton from 'DealButton/DealButton';
 import { YellowButton } from 'commons/components/Button/Button';
@@ -112,7 +112,7 @@ function App() {
       <CardCounter counter={deckCards.length} ace={4 - usedAceCounter} />
       {isWinner ? (
         <>
-          <img src={winner} className={'winner'} alt="winner" />
+          <img src={winner} className="winner" alt="winner" />
           <Confetti numberOfPieces={20} />
         </>
       ) : null}
