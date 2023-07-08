@@ -2,6 +2,10 @@
 
 Welcome!
 
+## Implementation of the below problem can be found here:
+
+### [Implementation.md](https://github.com/uplift-interview/uplift-interview-divya-tiwari/blob/b50d04daef659d3245b2b6797d1e7ded3913bcd1/IMPLEMENTATION.md)
+
 ## Intro
 
 This repository contains the Uplift coding challenge.
@@ -74,9 +78,9 @@ If you have any issues with husky/commit hooks, you may remove the \*.py section
 
 ### Design
 
-* [desktop](https://www.figma.com/file/TQSDNvCd0WJFhYQuwtUS8c/Interview-Card-Game?node-id=2%3A352)
+- [desktop](https://www.figma.com/file/TQSDNvCd0WJFhYQuwtUS8c/Interview-Card-Game?node-id=2%3A352)
 
-* [mobile](https://www.figma.com/file/TQSDNvCd0WJFhYQuwtUS8c/Interview-Card-Game?node-id=2%3A352)
+- [mobile](https://www.figma.com/file/TQSDNvCd0WJFhYQuwtUS8c/Interview-Card-Game?node-id=2%3A352)
 
 ### Requirements
 
@@ -111,13 +115,13 @@ Session, auth or login are all optional, but clean implementations earn points.
    - Within the same game, you should never get the same cards again that you got in the past (just like a physical deck).
    - **Game is over when all Aces have been dealt.** If this happens in the final hand, the user Wins; otherwise, the user loses.
 3. The GraphQL API should provide access to,
-    - Remaining card count
-    - Remaining Ace count
-    - Game status
+   - Remaining card count
+   - Remaining Ace count
+   - Game status
 4. The GraphQL API should also provide a way to,
-    - Start a new game
-    - Deal a new hand
-    - Reset the in-progress game
+   - Start a new game
+   - Deal a new hand
+   - Reset the in-progress game
 5. Display "Game Over" on completion. If the User wins, also display "Winner"; otherwise, display "You Lose. Better luck next time!"
 6. Unit tests.
 7. Bonuses:
@@ -237,9 +241,9 @@ There is a starter server you can use in `node-server/`, and it runs CI using `.
 This code is intended to be private. You are not allowed to share any of the base template code without Uplift's express permission. Please reach out to us **before** you share any of the code in this repository with others.
 
 That said, we understand you may want to show others your work. If you're proud of your work on this exercise and want to share it with future companies or add to your portfolio, we kindly request you help us keep the codebase as private as possible. If it's easy for other candidates to find a good coding exercise submission, they will, and then we have to invest a bunch of time to change the requirements so that old examples cannot be used. Unfortunately we've had cases of applicants copying examples they found.
-  
+
 Here are some ideas to share this more privately. We would really appreciate if you followed them:
 
-* Host the code privately and only give access to others upon request. This is the best way to ensure it's not easy to find.
-* Share only a few of the files, but not enough to tie everything together.
-* Host it on your own server, or bitbucket instead of github.
+- Host the code privately and only give access to others upon request. This is the best way to ensure it's not easy to find.
+- Share only a few of the files, but not enough to tie everything together.
+- Host it on your own server, or bitbucket instead of github.

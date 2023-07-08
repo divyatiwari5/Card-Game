@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Courier+Prime:wght@400;700&display=swap');
+@import './tailwind.css';
+@import './variables';
+@import '../commons/common';
+@import '../CardCounter/cardCounter';
+@import '../DealButton/dealButton';
+
+html,
+body,
+#root {
+  font-family: 'Courier Prime';
+  height: 100%;
+  margin: 0;
+}
+
+.board {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%), #0a863e;
+  display: flow-root;
+  height: 100%;
+  margin: 0;
+  overflow: auto;
+  & > .winner {
+    margin: auto;
+    margin-top: -36px;
+    width: 50%;
+    display: block;
+    @media (max-width: 500px) {
+      width: 100%;
+      margin-top: -52px;
+    }
+    &.hide {
+      visibility: hidden;
+    }
+  }
+  & > .card-box {
+    display: grid;
+    margin-top: 40px;
+    grid-template-columns: repeat(5, 0fr);
+    justify-content: center;
+    @media (max-width: 500px) {
+      grid-template-columns: repeat(3, 0fr);
+      grid-gap: 1rem;
+      margin-top: 20px;
+    }
+  }
+  & > .gameover {
+    display: flex;
+    flex-direction: column;
+    margin-top: 35px;
+    & > .text {
+      font-size: 2.3rem;
+      text-align: center;
+      font-weight: 400;
+      color: white;
+      margin: auto;
+    }
+  }
+}
